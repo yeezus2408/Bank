@@ -20,4 +20,7 @@ public class CardController {
 
     @PostMapping("/removeCard/{id}")
     public void removeCard(@PathVariable Long id){ cardServiceImpl.removeCard(id);}
+
+    @PostMapping("/updateCard/{id}")
+    public void updateCard(@PathVariable Long id){cardServiceImpl.updateCard(id);}
 }

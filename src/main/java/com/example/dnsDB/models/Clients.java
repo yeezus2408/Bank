@@ -18,10 +18,12 @@ public class Clients {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+    private String number;
+    private String password;
     private String lastname;
     private int age;
     private Long numAgreement;
+    private String status;
     private String cardNum;
 }
