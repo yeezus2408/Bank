@@ -13,3 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  freemarker:
+    expose-request-attributes: true
+    template-loader-path: classpath:/templates/
+
