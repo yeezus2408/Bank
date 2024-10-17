@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/styleInsertCard.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/headerStyle.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<body>
+    <div th:replace="~{fragment/header.html :: header}"></div>
+
+    <form th:action="@{/insertCard}" th:method="POST" th:object="${card}" id="form_card">
+        <!--Выбор типа карты -->
+        <div class="block-select-card">
+            <div class="label-select-card"><label for="cards">Выберите карту</label></div>
+            <input type="hidden" name="cardCategory" id="cardCategory">
+            <select id="cards">
+                <option value="Дебетовая">Дебетовая</option>
+                <option value="Кредитная">Кредитная</option>
+                <option value="Сберегательная">Сберегательная</option>
+                <option value="Накопительная">Накопительная</option>
+            </select>
+        </div>
+        <!--Выбор суммы карты, если она кредитная-->
+        <div class="block-select-balances-card" id="balancesCard" style="opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease;">
+            <div class="label-select-balance-card">
+                <label for="balances">Выберите кредитную сумму</label>
+            </div>
+            <input type="hidden" name="cardBalance" id="cardBalance">
+            <select id="balances">
+                <option value="10.000р">10.000р</option>
+                <option value="50.000р">50.000р</option>
+                <option value="100.000р">100.000р</option>
+                <option value="500.000р">500.000р</option>
+            </select>
+        </div>
+
+        <div class="block-input-pin">
+            <div class="label-input-pin"><label for="pin">Придумайте пин-код</label></div>
+            <input class="input-pin" type="password" name="" id="pin" placeholder="PIN">
+        </div>
+
+        <input type="submit" value="Создать">
+    </form>
+</body>
+<script src="/static/js/script.js"></script>
+<script>
+    $('select#cards').on('change', function() {
+        $('input[name="card_category"]').val(this.value);
+    });
+</script>
+</html>

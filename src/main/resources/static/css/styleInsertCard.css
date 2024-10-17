@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Форма */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.block-select-card{
+    overflow: hidden;
+}
+
+.label-select-card , .label-input-pin, .label-select-balance-card{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Выпадающий список */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    appearance: none; /* Скрываем стрелку по умолчанию */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23ccc' width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'><path d='M5 0l5 5-5 5z'/><path d='M0 5l5 5 5-5z'/></svg>"); /* Добавляем стрелку */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+.input-pin{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Кнопка */
+input[type="submit"] {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%; /* Занимает всю ширину формы */
+}
+
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}

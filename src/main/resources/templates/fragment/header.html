@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/headerStyle.css">
+    <title>Document</title>
+</head>
+<body class="header-body" >
+    <header class="header" th:fragment="header">
+        <h1 class="name">Банк</h1>
+        <nav>
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </nav>
+
+        <div class="auth-buttons" sec:authorize="isAuthenticated()" >
+            <a class="auth-button" href="profile">Личный кабинет</a>
+            <a class="auth-button" href="logout">Выйти</a>
+        </div>
+
+        <div class="auth-buttons" sec:authorize="!isAuthenticated()">
+            <a class="auth-button" href="login">Войти</a>
+            <a class="auth-button" href="registration">Зарегистрироваться</a>
+        </div>
+    </header>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 350px;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card-container:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-type {
+    font-size: 1em;
+    color: #777;
+}
+
+ul{
+    padding-left: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+.cardsInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.card-info {
+    display: none; /* Скрываем информацию по умолчанию */
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.card-info h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+.card-info p {
+    margin-bottom: 5px;
+    color: #555;
+}
