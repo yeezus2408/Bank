@@ -14,12 +14,12 @@
 <body>
     <div th:replace="~{fragment/header.html :: header}"></div>
 
-    <form th:action="@{/insertCard}" th:method="POST" th:object="${card}" id="form_card">
+    <form class="form-card" th:action="@{/insertCard}" th:method="POST" th:object="${card}" id="form_card">
         <!--Выбор типа карты -->
         <div class="block-select-card">
             <div class="label-select-card"><label for="cards">Выберите карту</label></div>
-            <input type="hidden" name="cardCategory" id="cardCategory">
-            <select id="cards">
+<!--            <input type="hidden" name="cardCategory" id="cardCategory">-->
+            <select id="cards" name="cardCategory">
                 <option value="Дебетовая">Дебетовая</option>
                 <option value="Кредитная">Кредитная</option>
                 <option value="Сберегательная">Сберегательная</option>
@@ -31,27 +31,21 @@
             <div class="label-select-balance-card">
                 <label for="balances">Выберите кредитную сумму</label>
             </div>
-            <input type="hidden" name="cardBalance" id="cardBalance">
-            <select id="balances">
-                <option value="10.000р">10.000р</option>
-                <option value="50.000р">50.000р</option>
-                <option value="100.000р">100.000р</option>
-                <option value="500.000р">500.000р</option>
+            <select id="balances" name="cardBalance">
+                <option value="10000">10.000р</option>
+                <option value="50000">50.000р</option>
+                <option value="100000">100.000р</option>
+                <option value="500000">500.000р</option>
             </select>
         </div>
 
         <div class="block-input-pin">
             <div class="label-input-pin"><label for="pin">Придумайте пин-код</label></div>
-            <input class="input-pin" type="password" name="" id="pin" placeholder="PIN">
+            <input class="input-pin" type="password" name="cardPin" id="pin" placeholder="PIN">
         </div>
 
         <input type="submit" value="Создать">
     </form>
 </body>
 <script src="/static/js/script.js"></script>
-<script>
-    $('select#cards').on('change', function() {
-        $('input[name="card_category"]').val(this.value);
-    });
-</script>
 </html>

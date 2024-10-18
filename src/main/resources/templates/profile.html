@@ -16,13 +16,12 @@
 
         <div class="user-info">
             <img th:if="${avatar == null}" src="https://via.placeholder.com/100" alt="Аватар пользователя">
-            <img th:src="data:image/jpeg;base64,${avatar.data}" />
             <h3 th:text="${user.getFirstname() + ' ' + user.getLastname()}"></h3>
         </div>
 
         <div class="actions">
             <a href="#">Изменить профиль</a>
-            <a href="myCards">Мои карты<
+            <a href="myCards">Мои карты</a>
             <a href="#">История операций</a>
             <a href="#">Настройки безопасности</a>
         </div>
