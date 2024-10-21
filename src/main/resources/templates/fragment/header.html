@@ -17,15 +17,51 @@
             <a href="#">Контакты</a>
         </nav>
 
-        <div class="auth-buttons" sec:authorize="isAuthenticated()" >
-            <a class="auth-button" href="profile">Личный кабинет</a>
-            <a class="auth-button" href="logout">Выйти</a>
+<!--        <div class="auth-buttons" sec:authorize="isAuthenticated()" >-->
+<!--            <a class="auth-button" href="profile">Личный кабинет</a>-->
+<!--            <a class="auth-button" href="logout">Выйти</a>-->
+<!--        </div>-->
+
+        <div class="user-profile" sec:authorize="isAuthenticated()">
+            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Аватарка">
+            <div class="dropdown">
+                <a href="profile">Личный кабинет</a>
+                <a href="logout">Выйти</a>
+            </div>
         </div>
+
 
         <div class="auth-buttons" sec:authorize="!isAuthenticated()">
             <a class="auth-button" href="login">Войти</a>
             <a class="auth-button" href="registration">Зарегистрироваться</a>
         </div>
+        <script>
+            const userProfile = document.querySelector('.user-profile');
+            const dropdown = document.querySelector('.dropdown');
+
+            userProfile.addEventListener('click', () => {
+                dropdown.style.display = 'block';
+                dropdown.style.opacity = 0;
+                dropdown.style.transform = 'translateY(-10px)';
+
+                setTimeout(() => {
+                    dropdown.style.opacity = 1;
+                    dropdown.style.transform = 'translateY(0)';
+                }, 10); // Небольшая задержка для плавного появления
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!event.target.closest('.user-profile') && !event.target.closest('.dropdown')) {
+                    dropdown.style.opacity = 0;
+                    dropdown.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        dropdown.style.display = 'none';
+                    }, 300); // Задержка для плавного исчезновения
+                }
+            });
+        </script>
     </header>
+
 </body>
+
 </html>
