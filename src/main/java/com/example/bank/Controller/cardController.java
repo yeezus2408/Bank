@@ -1,8 +1,10 @@
 package com.example.bank.Controller;
 
 import com.example.bank.Services.cardService;
+import com.example.bank.Services.operationsService;
 import com.example.bank.Services.userService;
 import com.example.bank.models.card;
+import com.example.bank.models.operations;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -18,6 +21,7 @@ import java.security.Principal;
 public class cardController {
     private final cardService cardService;
     private final userService userService;
+    private final operationsService operationService;
 
 
     @GetMapping("/insertCard")
@@ -34,10 +38,16 @@ public class cardController {
 
 
     @GetMapping("/myCards")
-    public String myCards(Model model){
+    public String myCards(Model model, operations operation){
 
         model.addAttribute("cards", cardService.getAllCardsByOwner());
+        model.addAttribute("operation", operation);
 //        model.addAttribute("cardByPrincipal", cardService.getCardByPrincipal(principal));
         return "myCards";
+    }
+
+    @PostMapping("/transaction")
+    public void transaction(@RequestParam("fromCard") String cardNumFrom, @RequestParam("toCard") String cardNumTo, Integer amount, operations operation){
+        operationService.transaction(cardNumFrom, cardNumTo, amount, operation);
     }
 }

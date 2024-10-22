@@ -57,4 +57,19 @@ public class cardService {
            return cardRepository.findAllByOwner_Id(currentUser.getId());
         }
     }
+
+
+    public card findByCardNum(String cardNum){
+        List<card> cards = getAllCardsByOwner();
+        card carda = null;
+        if(cards == null){
+            return null;
+        }
+        for (card card : cards) {
+            if(card.getCardNumber().equals(cardNum)){
+                carda = card;
+            }
+        }
+        return carda;
+    }
 }
