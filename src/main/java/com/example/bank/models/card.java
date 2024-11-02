@@ -45,6 +45,9 @@ public class card {
     @Column(name = "card_balance")
     private Integer cardBalance;
 
+    @Column(name = "active")
+    private Boolean active;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private user owner;

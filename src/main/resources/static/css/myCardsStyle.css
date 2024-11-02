@@ -119,7 +119,7 @@ li{
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 30%;
+    width: 26%;
     border-radius: 5px; /* Скругленные углы */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Тень */
 }
@@ -175,6 +175,33 @@ li{
     transition: background-color 0.3s;
 }
 
+.buttons{
+    display: block;
+    justify-self: center;
+    margin-top: 50px;
+}
+
+.changeActiveButton, .cancelChangeActive {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.changeActiveButton{
+    margin-right: 50px;
+}
+
 #transferForm button[type="submit"]:hover {
     background-color: #3e8e41;
+}
+
+
+.about-active{
+    color: #4CAF50;
+    margin-left: 30px;
 }

@@ -24,6 +24,12 @@ public class operationsService {
         user userTo = cardRepository.findByCardNumber(cardNumTo).getOwner();
         card cardFrom = cardRepository.findByCardNumber(cardNumFrom);
         card cardTo = cardService.findByCardNum(cardNumTo);
+
+        if(cardNumTo.length() < 12){
+            cardTo = cardRepository.findCardByOwnerPhoneNumber(cardNumTo);
+        }
+
+
         operation.setFromUser(currentUser);
         operation.setToUser(userTo);
         operation.setDateOperation(LocalDate.now());

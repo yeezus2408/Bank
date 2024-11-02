@@ -39,6 +39,15 @@ public class cardService {
         }
         card.setCardNumber(generatorCardNum.cardNum());
         card.setCardCVV(generatorCardNum.cardCVV());
+
+        if(owner.getCards() == null){
+            card.setActive(true);
+        }else {
+            card.setActive(false);
+        }
+
+
+
         card.setCardStatus("active");
         card.setCardPin(card.getCardPin());
         currentUser.setAgreement(generatorCardNum.agreement());
@@ -71,5 +80,16 @@ public class cardService {
             }
         }
         return carda;
+    }
+
+    public void changeActive(String cardNum){
+        List<card> cards = getAllCardsByOwner();
+        for(card card : cards){
+            if(card.getCardNumber().equals(cardNum)){
+                card.setActive(true);
+            } else
+                card.setActive(false);
+        }
+        cardRepository.saveAll(cards);
     }
 }
