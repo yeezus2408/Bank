@@ -15,7 +15,14 @@
         <h2>Личный кабинет</h2>
 
         <div class="user-info">
-            <img th:if="${avatar == null}" src="https://via.placeholder.com/100" alt="Аватар пользователя">
+            <form th:action="@{/uploadAvatar}" th:method="POST" id="avatarForm" enctype="multipart/form-data">
+                <input type="file" id="avatar" name="avatar" accept="image/jpeg" style="display: none;">
+            </form>
+
+            <label for="avatar">
+                <img th:if="${avatar == null}" src="https://pikuco.ru/upload/test_stable/522/52297aef53d78bf473ab13748b3fe293.webp" alt="Аватар пользователя">
+                <img th:if="${avatar != null}" th:src="${avatarUrl}">
+            </label>
             <h3 th:text="${user.getFirstname() + ' ' + user.getLastname()}"></h3>
         </div>
 
@@ -35,4 +42,13 @@
 
     </div>
 </body>
+<script>
+    const avatarUpload = document.getElementById('avatar');
+
+    avatarUpload.addEventListener('change', (event) => {
+
+        // Отправляем форму (при помощи JavaScript)
+        document.getElementById("avatarForm").submit();
+    });
+</script>
 </html>

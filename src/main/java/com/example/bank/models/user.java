@@ -57,6 +57,9 @@ public class user implements UserDetails {
     @OneToMany(mappedBy = "owner")
     private List<card> cards;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "avatar_id")
+    private Avatar avatar;
 
 
     @CollectionTable(name = "user_role",

@@ -26,7 +26,7 @@ public class SecurityConfig  {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
-                        .requestMatchers("/registration", "/insertCard").permitAll()
+                        .requestMatchers("/registration", "/insertCard", "/uploadAvatar").permitAll()
                         .requestMatchers("/myCards").authenticated()
                         .anyRequest().authenticated()
 
@@ -37,7 +37,7 @@ public class SecurityConfig  {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return webSecurity -> {webSecurity.ignoring().requestMatchers("/static/css/**", "/static/js/**");};
+        return webSecurity -> {webSecurity.ignoring().requestMatchers("/static/css/**", "/static/js/**", "/static/img/*");};
     }
 
 

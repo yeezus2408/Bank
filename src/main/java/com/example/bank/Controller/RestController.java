@@ -1,6 +1,9 @@
 package com.example.bank.Controller;
 
+import com.example.bank.Repository.AvatarRepository;
+import com.example.bank.Repository.userRepository;
 import com.example.bank.Services.userService;
+import com.example.bank.models.Avatar;
 import com.example.bank.models.user;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
@@ -18,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class RestController {
     private final userService userService;
+    private final userRepository userRepository;
+    private final AvatarRepository avatarRepository;
 
     @GetMapping("/")
-    public String index(Model model, user user) {
+    public void index(Model model, user user) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        boolean isAuthenticated = authentication != null && authentication.isAuthenticated();
-        String login = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("content", "home :: content");
-        return "index";
     }
 }

@@ -25,6 +25,12 @@ public class MvcConfig extends WebMvcConfigurationSupport {
 
         registry.addResourceHandler("/static/js/**")
                 .addResourceLocations("classpath:/static/js/");
+
+        registry.addResourceHandler("/static/img/**")
+                .addResourceLocations("classpath:/static/img/");
+
+        registry.addResourceHandler("/public/avatars/**")
+                .addResourceLocations("classpath:/public/avatars/");
     }
 
     @Bean

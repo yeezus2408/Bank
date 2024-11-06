@@ -23,7 +23,8 @@
 <!--        </div>-->
 
         <div class="user-profile" sec:authorize="isAuthenticated()">
-            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Аватарка">
+                <img th:if="${avatar == null}" src="https://pikuco.ru/upload/test_stable/522/52297aef53d78bf473ab13748b3fe293.webp" alt="Аватар пользователя">
+                <img th:if="${avatar != null}" th:src="${avatarUrl}">
             <div class="dropdown">
                 <a href="profile">Личный кабинет</a>
                 <a href="logout">Выйти</a>

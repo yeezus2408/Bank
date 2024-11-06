@@ -25,6 +25,8 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 public class userController {
+
+
     private final PasswordEncoder passwordEncoder;
     private final userService userService;
     private final userRepository userRepository;
@@ -65,6 +67,7 @@ public class userController {
     public String profile(@ModelAttribute("user") user user, Model model) {
         user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         Avatar avatar = avatarRepository.findAvatarByUserId(user.getId());
+        model.addAttribute("avatarUrl", "/public/avatars/"+avatar.getName());
         model.addAttribute("user", user);
         model.addAttribute("avatar", avatar);
         return "profile";
