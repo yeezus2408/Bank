@@ -40,11 +40,11 @@ public class cardService {
         card.setCardNumber(generatorCardNum.cardNum());
         card.setCardCVV(generatorCardNum.cardCVV());
 
-        if(owner.getCards() == null){
-            card.setActive(true);
-        }else {
-            card.setActive(false);
-        }
+//        if(owner.getCards() == null){
+//            card.setActive(true);
+//        }else {
+//            card.setActive(false);
+//        }
 
 
 

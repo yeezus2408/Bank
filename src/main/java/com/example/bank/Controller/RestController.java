@@ -24,10 +24,10 @@ public class RestController {
     private final userRepository userRepository;
     private final AvatarRepository avatarRepository;
 
-    @GetMapping("/")
-    public void index(Model model, user user) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        boolean isAuthenticated = authentication != null && authentication.isAuthenticated();
-        model.addAttribute("content", "home :: content");
-    }
+//    @GetMapping("/")
+//    public void index(Model model, user user) {
+////        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+////        boolean isAuthenticated = authentication != null && authentication.isAuthenticated();
+//        model.addAttribute("content", "home :: content");
+//    }
 }
