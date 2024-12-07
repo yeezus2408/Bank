@@ -1,79 +1,215 @@
-body{
-    font-family: 'Arial', sans-serif;
+* {
     margin: 0;
-}
-form {
-    width: 400px;
-    padding: 60px;
-    height: 270px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-sizing: border-box;
+    font-family: 'montserrat', sans-serif;
 }
 
-.container{
-    background-color: #f4f4f4;
+body{
+    margin: 0;
     display: flex;
-    min-height: 100vh;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-image: url("/static/img/dry-planet_3840x1920_xtrafondos.com.jpg");
+    background-size: cover;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+header{
+    margin-top: 0;
 }
 
-input[type="text"],
-input[type="password"] {
-    font-size: 16px;
-    width: 100%;
-    padding: 10px;
-    height: 45px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+.glass-container{
+    width: 300px;
+    height: 350px;
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #fff;
 }
 
-input[type="submit"] {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-a {
-
-    text-decoration: none;
-}
-
-.registration-link-desc{
+.glass-container::before{
+    content: '';
     position: absolute;
-    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.login-box{
+    max-width: 250px;
+    margin: 0 auto;
     text-align: center;
-    bottom: 0;
-    margin-left: 10%;
-    margin-bottom: 30px;
-
 }
 
-.registration-link{
-    color: #4CAF50;
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
-a:hover {
-    text-decoration: underline;
+input{
+    padding: 10px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 13px;
 }
+
+input::placeholder{
+    color: #fff;
+}
+
+input:focus{
+    outline: none;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 12px;
+    color: white;
+}
+
+.options input{
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+.options a{
+    text-decoration: none;
+    color: white;
+    margin-left: auto;
+}
+
+h2{
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+button{
+    background: #fff;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover{
+    background: transparent;
+    color: white;
+    outline: 1px solid #fff;
+}
+
+p{
+    font-size: 12px;
+    color: #fff;
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body{*/
+/*    font-family: 'Arial', sans-serif;*/
+/*    margin: 0;*/
+/*}*/
+/*form {*/
+/*    width: 400px;*/
+/*    padding: 60px;*/
+/*    height: 270px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*    position: relative;*/
+/*}*/
+
+/*.container{*/
+/*    background-color: #f4f4f4;*/
+/*    display: flex;*/
+/*    min-height: 100vh;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*label {*/
+/*    display: block;*/
+/*    margin-bottom: 5px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*input[type="text"],*/
+/*input[type="password"] {*/
+/*    font-size: 16px;*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    height: 45px;*/
+/*    margin-bottom: 15px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 3px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*input[type="submit"] {*/
+/*    background-color: #4CAF50; !* Green *!*/
+/*    border: none;*/
+/*    color: white;*/
+/*    padding: 10px 20px;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    display: inline-block;*/
+/*    font-size: 16px;*/
+/*    border-radius: 3px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*input[type="submit"]:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
+
+/*a {*/
+
+/*    text-decoration: none;*/
+/*}*/
+
+/*.registration-link-desc{*/
+/*    position: absolute;*/
+/*    display: block;*/
+/*    text-align: center;*/
+/*    bottom: 0;*/
+/*    margin-left: 10%;*/
+/*    margin-bottom: 30px;*/
+
+/*}*/
+
+/*.registration-link{*/
+/*    color: #4CAF50;*/
+/*}*/
+
+/*a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/

@@ -34,13 +34,19 @@ public class userController {
     private final AvatarRepository avatarRepository;
 
     @GetMapping("/login")
-    public String login(@ModelAttribute("user") user user) {
+    public String login(@ModelAttribute("user") user user, Model model) {
+        user currUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("curr", currUser);
         return "login";
     }
 
 
     @GetMapping("/registration")
-    public String registration(@ModelAttribute("user") user user) {
+    public String registration(@ModelAttribute("user") user user, Model model) {
+        user currUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(currUser != null) {
+            
+        }
         return "registration";
     }
 
