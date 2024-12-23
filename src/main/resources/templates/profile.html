@@ -11,35 +11,28 @@
 </head>
 <body>
     <div th:replace="~{fragment/header.html :: header}"></div>
-    <div class="container">
+
+    <div class="glass-container">
         <h2>Личный кабинет</h2>
+        <div class="profile">
+            <div class="user-info">
+                <form th:action="@{/uploadAvatar}" th:method="POST" id="avatarForm" enctype="multipart/form-data">
+                    <input type="file" name="avatar" id="avatar" accept="image/jpeg" style="display: none">
+                </form>
 
-        <div class="user-info">
-            <form th:action="@{/uploadAvatar}" th:method="POST" id="avatarForm" enctype="multipart/form-data">
-                <input type="file" id="avatar" name="avatar" accept="image/jpeg" style="display: none;">
-            </form>
-
-            <label for="avatar">
-                <img th:if="${avatar == null}" src="https://pikuco.ru/upload/test_stable/522/52297aef53d78bf473ab13748b3fe293.webp" alt="Аватар пользователя">
-                <img th:if="${avatar != null}" th:src="${avatarUrl}">
-            </label>
-            <h3 th:text="${user.getFirstname() + ' ' + user.getLastname()}"></h3>
+                <label for="avatar">
+                    <img th:if="${avatar == null}" src="https://pikuco.ru/upload/test_stable/522/52297aef53d78bf473ab13748b3fe293.webp" alt="Аватар пользователя">
+                    <img th:if="${avatar != null}" th:src="${avatarUrl}">
+                </label>
+                <h3 class="name-profile" th:text="${user.getFirstname() + ' ' + user.getLastname()}"></h3>
+            </div>
+            <div class="actions">
+                <a href="#">Изменить профиль</a>
+                <a href="myCards">Мои карты</a>
+                <a href="#">История операций</a>
+                <a href="#">Настройки безопасности</a>
+            </div>
         </div>
-
-        <div class="actions">
-            <a href="#">Изменить профиль</a>
-            <a href="myCards">Мои карты</a>
-            <a href="#">История операций</a>
-            <a href="#">Настройки безопасности</a>
-        </div>
-
-        <!-- Добавьте сюда контент личного кабинета:
-             * Баланс
-             * История операций
-             * Настройки
-             * Другие функции
-        -->
-
     </div>
 </body>
 <script>

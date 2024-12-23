@@ -44,9 +44,6 @@ public class userController {
     @GetMapping("/registration")
     public String registration(@ModelAttribute("user") user user, Model model) {
         user currUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        if(currUser != null) {
-            
-        }
         return "registration";
     }
 

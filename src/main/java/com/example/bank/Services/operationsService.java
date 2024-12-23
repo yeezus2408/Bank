@@ -29,9 +29,9 @@ public class operationsService {
             cardTo = cardRepository.findCardByOwnerPhoneNumber(cardNumTo);
         }
 
-
-        operation.setFromUser(currentUser);
-        operation.setToUser(userTo);
+        operation.setType("Перевод");
+        operation.setFromUser(currentUser.getId());
+        operation.setToUser(userTo.getId());
         operation.setDateOperation(LocalDate.now());
         cardFrom.setCardBalance(cardFrom.getCardBalance() - amount);
         cardTo.setCardBalance(cardTo.getCardBalance() + amount);

@@ -54,10 +54,16 @@ public class user implements UserDetails {
 
     private LocalDate creationDate;
 
-    @OneToMany(mappedBy = "owner")
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Long> operation_id;
+
+
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<card> cards;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 

@@ -16,6 +16,10 @@ public class operations {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
+
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "from_card")
     private String fromCard;
     @Column(name = "to_card")
@@ -23,9 +27,10 @@ public class operations {
     @Column(name = "date_operation")
     private LocalDate dateOperation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private user fromUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private user toUser;
+    @Column(name = "from_user_id")
+    private Long fromUser;
+
+    @Column(name = "to_user_id")
+    private Long toUser;
 }

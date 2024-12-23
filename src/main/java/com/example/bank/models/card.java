@@ -49,12 +49,16 @@ public class card {
     private Boolean active;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner")
     private user owner;
+
+    @Column(name = "owner_id")
+    private Long owner_id;
 
     @PrePersist
     protected void onCreate() {
         cardExpiryDate = LocalDate.now();
         dateToEnd = cardExpiryDate.plusYears(6);
     }
+
 }

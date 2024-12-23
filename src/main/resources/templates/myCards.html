@@ -6,76 +6,110 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/myCardsStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/headerStyle.css">
     <title>Перевод</title>
 </head>
 <body>
     <div th:replace="~{fragment/header.html :: header}"></div>
-    <div class="cardsInfo">
-        <ul>
-            <li th:each="card: ${cards}">
-                <div class="card-container" onclick="toggleCardInfo(this)">
-                    <div class="card-details">
-                        <div class="card-number"><span th:text="${card.getCardNumber()}"></span></div>
-                        <div class="card-type">Visa</div>
+    <div class="glass-container">
+        <div class="cardsInfo">
+            <ul>
+                <li th:each="card: ${cards}">
+                    <div class="card-container">
+                        <div class="card-details btn cons-form switch-form start-anim">
+                            <div class="card-number"><span th:text="${card.getCardNumber()}"></span></div>
+                            <div class="card-type">Visa</div>
+                        </div>
+                        <div class="card-info zakaz-form switch-form">
+                            <h3>Информация о карте</h3>
+                            <p>Имя держателя <span th:text="${card.getCardName()}"></span></p>
+                            <p>Срок действия: <span th:text="${card.getDateToEnd()}"></span></p>
+                            <p>CVV: <span th:text="${card.getCardCVV()}"></span></p>
+                            <p>Баланс: <span th:text="${card.getCardBalance()}+' Руб' "> </span></p>
+                            <button class="transfer-button" onclick="openTransferModal(this)" th:data-card-id="${card.getCardNumber()}">Перевести</button>
+                            <button class="transfer-button" th:if="${card.getActive() == false}" onclick="openChangeActiveModal(this)" th:data-card-id="${card.getCardNumber()}">Сделать активной</button>
+                            <span class="about-active" th:if="${card.getActive() == true}">Активная карта</span>
+                        </div>
                     </div>
-                    <div class="card-info">
-                        <h3>Информация о карте</h3>
-                        <p>Имя держателя <span th:text="${card.getCardName()}"></span></p>
-                        <p>Срок действия: <span th:text="${card.getDateToEnd()}"></span></p>
-                        <p>CVV: <span th:text="${card.getCardCVV()}"></span></p>
-                        <p>Баланс: <span th:text="${card.getCardBalance()}+' Руб' "> </span></p>
-                        <button class="transfer-button" onclick="openTransferModal(this)" th:data-card-id="${card.getCardNumber()}">Перевести</button>
-                        <button class="transfer-button" th:if="${card.getActive() == false}" onclick="openChangeActiveModal(this)" th:data-card-id="${card.getCardNumber()}">Сделать активной</button>
-                        <span class="about-active" th:if="${card.getActive() == true}">Активная карта</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
 
-    <div id="transferModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Перевод</h2>
-            <form id="transferForm" th:action="@{/transaction}" method="post" th:object="${operation}">
-                <input type="hidden" id="transfer-card-id" name="fromCard" th:value="0">
-                <label for="recipient-account">Номер счета или номер телефона получателя:</label>
-                <input type="text" id="recipient-account" name="toCard" required>
-                <label for="amount">Сумма:</label>
-                <input type="number" id="amount" name="amount" min="1" required>
-                <button type="submit">Перевести</button>
-            </form>
+                </li>
+            </ul>
+        </div>
+
+        <div id="transferModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Перевод</h2>
+                <form id="transferForm" th:action="@{/transaction}" method="post" th:object="${operation}">
+                    <input type="hidden" id="transfer-card-id" name="fromCard" th:value="0">
+                    <label for="recipient-account">Номер счета или номер телефона получателя:</label>
+                    <input type="text" id="recipient-account" name="toCard" required>
+                    <label for="amount">Сумма:</label>
+                    <input type="number" id="amount" name="amount" min="1" required>
+                    <button type="submit">Перевести</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div id="ActiveModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeChangeActiveModal()">&times;</span>
+<!--    <div class="zakaz-form switch-form">-->
+<!--        <div class="glass-info">-->
+<!--            <div class="info-container">-->
+<!--                <div class="card-info">-->
+<!--                    <h3>Информация о карте</h3>-->
+<!--                    <p>Имя держателя <span th:text="${card.getCardName()}"></span></p>-->
+<!--                    <p>Срок действия: <span th:text="${card.getDateToEnd()}"></span></p>-->
+<!--                    <p>CVV: <span th:text="${card.getCardCVV()}"></span></p>-->
+<!--                    <p>Баланс: <span th:text="${card.getCardBalance()}+' Руб' "> </span></p>-->
+<!--                    <button class="transfer-button" onclick="openTransferModal(this)" th:data-card-id="${card.getCardNumber()}">Перевести</button>-->
+<!--                    <button class="transfer-button" th:if="${card.getActive() == false}" onclick="openChangeActiveModal(this)" th:data-card-id="${card.getCardNumber()}">Сделать активной</button>-->
+<!--                    <span class="about-active" th:if="${card.getActive() == true}">Активная карта</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-            <form id="changeForm" th:action="@{/changeActive}" method="post" th:object="${cards}">
-                <input type="hidden" id="change-card-id" name="fromCard" th:value="0">
-                <h2>Вы уверены?</h2>
-                <div class="buttons">
-                    <button class="changeActiveButton" type="submit">Изменить</button>
-                    <button class="cancelChangeActive" onclick="closeChangeActiveModal()">Отмена</button>
-                </div>
-            </form>
+        <div id="ActiveModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeChangeActiveModal()">&times;</span>
+
+                <form id="changeForm" th:action="@{/changeActive}" method="post" th:object="${cards}">
+                    <input type="hidden" id="change-card-id" name="fromCard" th:value="0">
+                    <h2>Вы уверены?</h2>
+                    <div class="buttons">
+                        <button class="changeActiveButton" type="submit">Изменить</button>
+                        <button class="cancelChangeActive" onclick="closeChangeActiveModal()">Отмена</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+
 
 </body>
 <script>
+    jQuery(document).ready(function($) {
+        $(function() {
+            $('.btn').click(function() {
+                $('.switch-form').toggleClass('start-anim');
+
+            });
+        });
+    });
     function toggleCardInfo(cardContainer) {
         const cardInfo = cardContainer.querySelector('.card-info');
         cardInfo.style.display = cardInfo.style.display === 'none' ? 'block' : 'none';
+
     }
+
     function openTransferModal(button) {
         document.getElementById("transferModal").style.display = "block";
         var fromCard = button.dataset.cardId;
 
         document.getElementById("transfer-card-id").value = fromCard;
     }
+
+
 
     function closeModal() {
         document.getElementById("transferModal").style.display = "none";

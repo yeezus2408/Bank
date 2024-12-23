@@ -51,6 +51,7 @@ public class cardService {
         card.setCardStatus("active");
         card.setCardPin(card.getCardPin());
         currentUser.setAgreement(generatorCardNum.agreement());
+        card.setOwner_id(owner.getId());
         card.setOwner(owner);
         card.setCardName(currentUser.getFirstname() + " " + currentUser.getLastname());
         cardRepository.save(card);
@@ -63,7 +64,7 @@ public class cardService {
             return null;
         }
         else {
-           return cardRepository.findAllByOwner_Id(currentUser.getId());
+           return cardRepository.findAllByOwner_id(currentUser.getId());
         }
     }
 
@@ -92,4 +93,6 @@ public class cardService {
         }
         cardRepository.saveAll(cards);
     }
+
+
 }
