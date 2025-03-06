@@ -1,4 +1,4 @@
-package com.example.roomly.Entities.Enum;
+package com.example.roomly.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

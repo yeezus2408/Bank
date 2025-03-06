@@ -1,0 +1,98 @@
+html
+<div class="container">
+    <div class="chat-list-container">
+        <h2 class="chat-list-title">Ваши чаты</h2>
+
+        <ul class="chat-list">
+            <li class="chat-item" th:each="chat : ${chats}" onclick="openChatDialog('${chat.getId()}', '${chat.getName()}', '${chat.getLastMessage()}')">
+                <img src="https://pikuco.ru/upload/test_stable/522/52297aef53d78bf473ab13748b3fe293.webp" alt="Аватар" class="chat-avatar">
+                <div class="chat-info">
+                    <div class="chat-name" th:text="${chat.getName()}"></div>
+                    <div class="chat-message" th:text="${chat.getLastMessage()}"></div>
+                </div>
+                <span class="chat-time" th:text="${chat.getUpdated()}"></span>
+                <i class="fas fa-comment chat-icon"></i>
+            </li>
+        </ul>
+
+        <div class="no-chats-message" th:if="${chats.isEmpty()}">
+            У вас пока нет чатов.<br>
+            <button type="button" class="btn btn-primary support" onclick="openSupportChat()">Написать в поддержку</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Модальное окно для поддержки -->
+<div id="supportModal" class="modal">
+    <div class="modal-content w-50">
+        <span class="close" onclick="closeSupportChat()">&times;</span>
+        <h2>Чат с поддержкой</h2>
+        <form th:action="@{createChat}" th:method="POST">
+            <textarea class="chat-textarea" placeholder="Введите ваше сообщение..."></textarea>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<!-- Модальное окно для чата -->
+<div id="chatModal" class="modal">
+    <div class="modal-content w-50">
+        <span class="close" onclick="closeChatDialog()">&times;</span>
+        <h2 id="chatModalTitle"></h2>
+        <ul id="chatMessages"></ul>
+        <form id="chatForm" onsubmit="sendMessage(event)">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." required>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Получить элементы модальных окон
+    var supportModal = document.getElementById("supportModal");
+    var chatModal = document.getElementById("chatModal");
+
+    // Открыть чат при нажатии на элемент
+    function openChatDialog(chatId, chatName, lastMessage) {
+        document.getElementById("chatModalTitle").innerText = chatName;
+        // Здесь можно загрузить историю сообщений из чата по chatId
+        // Например, с помощью AJAX запроса
+        // Затем вы можете добавить их в chatMessages
+        // Пример:
+        document.getElementById("chatMessages").innerHTML = "<li>" + lastMessage + "</li>"; // Замените это на реальное содержимое
+        chatModal.style.display = "block";
+    }
+
+    // Закрыть чат
+    function closeChatDialog() {
+        chatModal.style.display = "none";
+    }
+
+    // Открыть поддержку
+    function openSupportChat() {
+        supportModal.style.display = "block";
+    }
+
+    // Закрыть поддержку
+    function closeSupportChat() {
+        supportModal.style.display = "none";
+    }
+
+    // Закрыть модал при клике вне его
+    window.onclick = function(event) {
+        if (event.target == supportModal) {
+            closeSupportChat();
+        } else if (event.target == chatModal) {
+            closeChatDialog();
+        }
+    };
+
+    function sendMessage(event) {
+        event.preventDefault();
+        var message = document.getElementById("chatInput").value;
+        // Отправка сообщения в нужный чат по chatId
+        // Например, с помощью AJAX
+        document.getElementById("chatInput").value = ''; // Очистить поле ввода
+    }
+</script>

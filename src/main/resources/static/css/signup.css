@@ -1,0 +1,58 @@
+body {
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+.registration-container {
+    max-width: 500px; /* Increased max-width for more fields */
+    margin: auto;
+    margin-top: 50px; /* Adjusted margin-top for better spacing */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #343a40; /* Dark gray text */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Slightly reduced margin for more compact layout */
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #28a745; /* Green color for registration */
+    border-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #1e7e34; /* Darker green on hover */
+    border-color: #1e7e34;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d; /* Gray color */
+}
+
+.password-toggle:hover {
+    color: #495057; /* Darker gray on hover */
+}
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}

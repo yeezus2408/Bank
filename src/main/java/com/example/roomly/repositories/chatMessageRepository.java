@@ -1,4 +1,7 @@
 package com.example.roomly.repositories;
 
-public interface chatMessageRepository {
+import com.example.roomly.Entities.wsEntities.chatMessage;
+import org.springframework.data.repository.CrudRepository;
+
+public interface chatMessageRepository extends CrudRepository<chatMessage, Long> {
 }
